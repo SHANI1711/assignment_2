@@ -18,7 +18,7 @@ const s3 = new AWS.S3();
 const bucketName = "shani-assignment-2";
 const s3File = "file.txt";
 const robUrl = "http://52.92.127.198:8080/start";
-(async () => {
+(async function () {
 	const data = {
 		banner: "B00917757",
 		ip: "44.204.127.12",
