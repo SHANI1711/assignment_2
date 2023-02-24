@@ -23,7 +23,8 @@ const robUrl = "http://52.92.127.198:8080/start";
 		banner: "B00917757",
 		ip: "44.204.127.12",
 	};
-	await axios.post(robUrl, data);
+	const postReq = await axios.post(robUrl, data);
+	console.log(postReq);
 })();
 
 app.post("/storedata", (req, res) => {
