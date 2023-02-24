@@ -2,7 +2,7 @@
 	"name": "a2-aws",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "app.js",
 	"scripts": {
 		"start": "nodemon app.js"
 	},
