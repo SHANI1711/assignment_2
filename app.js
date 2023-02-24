@@ -18,14 +18,29 @@ const s3 = new AWS.S3();
 const bucketName = "shani-assignment-2";
 const s3File = "file.txt";
 const robUrl = "http://52.92.127.198:8080/start";
-(async function () {
-	const data = {
-		banner: "B00917757",
-		ip: "44.204.127.12",
-	};
-	const postReq = await axios.post(robUrl, data);
-	console.log(postReq);
-})();
+
+async function sendRequest() {
+	let response = await axios
+		.post(robUrl, {
+			banner: "B00917757",
+			ip: "44.204.127.12",
+		})
+		.then(function (res) {
+			console.log(res);
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+	// let data = response.data;
+	// res.json(data)
+}
+sendRequest();
+
+// (async function () {
+// 	const postReq = await axios.post(robUrl, {banner: "B00917757",
+//     ip: "44.204.127.12"});
+// 	console.log(postReq);
+// })();
 
 app.post("/storedata", (req, res) => {
 	const content = req.body.data;
@@ -36,7 +51,8 @@ app.post("/storedata", (req, res) => {
 		} else {
 			console.log("File created successfully!!");
 		}
-		res.status(200).json(data.Location);
+		res.json(data.Location);
+		res.status(200);
 	});
 });
 
