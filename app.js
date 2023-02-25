@@ -23,7 +23,7 @@ async function sendRequest() {
 	let response = await axios
 		.post(robUrl, {
 			banner: "B00917757",
-			ip: "44.204.127.12:5000",
+			ip: "44.193.1.188:5000",
 		})
 		.then(function (res) {
 			console.log(res.data);
