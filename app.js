@@ -37,13 +37,13 @@ sendRequest();
 app.post("/storedata", (req, res) => {
 	const content = req.body.data;
 	const params = { Bucket: bucketName, Key: s3File, Body: content };
-	s3.upload(params, (err, data) => {
+	s3.upload(params, function (err, data) {
 		if (err) {
 			console.log(err);
 		} else {
 			console.log("File created successfully!!");
-			const s3uri = data.location;
-			res.json({ s3uri }).status(200);
+			const uri = data.Location;
+			res.status(200).send({ s3uri: uri });
 		}
 	});
 });
@@ -67,7 +67,6 @@ app.post("/appenddata", (req, res) => {
 			s3.upload(uploadParams, (err, data) => {
 				if (err) {
 					console.log(err);
-					res.send(err);
 				} else {
 					res.sendStatus(200);
 					console.log("File updated successfully!");
