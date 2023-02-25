@@ -23,24 +23,16 @@ async function sendRequest() {
 	let response = await axios
 		.post(robUrl, {
 			banner: "B00917757",
-			ip: "44.204.127.12",
+			ip: "44.204.127.12:5000",
 		})
 		.then(function (res) {
-			console.log(res);
+			console.log(res.data);
 		})
 		.catch(function (error) {
 			console.log(error);
 		});
-	// let data = response.data;
-	// res.json(data)
 }
 sendRequest();
-
-// (async function () {
-// 	const postReq = await axios.post(robUrl, {banner: "B00917757",
-//     ip: "44.204.127.12"});
-// 	console.log(postReq);
-// })();
 
 app.post("/storedata", (req, res) => {
 	const content = req.body.data;
@@ -51,8 +43,7 @@ app.post("/storedata", (req, res) => {
 		} else {
 			console.log("File created successfully!!");
 		}
-		res.json(data.Location);
-		res.status(200);
+		res.status(200).send({ s3uri: data.location });
 	});
 });
 
@@ -77,7 +68,8 @@ app.post("/appenddata", (req, res) => {
 					console.log(err);
 					res.send(err);
 				} else {
-					res.send("File updated successfully!");
+					res.sendStatus(200);
+					console.log("File updated successfully!");
 				}
 			});
 		}
@@ -93,9 +85,8 @@ app.post("/deletefile", (req, res) => {
 	s3.deleteObject(deletaParams, (err, data) => {
 		if (err) {
 			console.log(err);
-			res.send(err);
 		} else {
-			res.send("File deleted successfully!");
+			res.sendStatus(200);
 		}
 	});
 });
