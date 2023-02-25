@@ -43,7 +43,7 @@ app.post("/storedata", (req, res) => {
 		} else {
 			console.log("File created successfully!!");
 			const uri = data.location;
-			res.status(200).send({ s3uri: uri });
+			res.send({ s3uri: uri }).status(200);
 		}
 	});
 });
