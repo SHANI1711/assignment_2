@@ -19,8 +19,8 @@ const bucketName = "shani-assignment-2";
 const s3File = "file.txt";
 const robUrl = "http://52.92.127.198:8080/start";
 
-async function sendRequest() {
-	let response = await axios
+function sendRequest() {
+	let response = axios
 		.post(robUrl, {
 			banner: "B00917757",
 			ip: "44.193.1.188:5000",
